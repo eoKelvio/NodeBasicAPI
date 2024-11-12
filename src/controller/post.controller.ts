@@ -123,6 +123,27 @@ export class PostController {
     }
   }
 
+  /**
+   * @swagger
+   * /posts/{id}:
+   *   delete:
+   *     summary: Exclui um post pelo ID
+   *     description: Exclui um post pelo ID.
+   *     tags:
+   *       - Posts
+   *     parameters:
+   *       - in: path
+   *         name: id
+   *         required: true
+   *         schema:
+   *           type: integer
+   *         description: ID do post
+   *     responses:
+   *       200:
+   *         description: Post excluído com sucesso.
+   *       500:
+   *         description: Erro ao excluir o post.
+   */
   async deletePostById(req: Request, res: Response): Promise<Response> {
     try {
       await this.postService.deletePostById(Number(req.params.id));
