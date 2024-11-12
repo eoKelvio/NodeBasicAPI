@@ -78,6 +78,7 @@ const postController = new PostController();
 app.post("/users", userController.createUser.bind(userController));
 app.get("/users", userController.getUsers.bind(userController));
 app.get("/users/:id", userController.getUserById.bind(userController));
+app.delete("/users/:id", userController.deleteUserById.bind(userController));
 
 
 // Configura os endpoints para lidar com requisições de posts.
