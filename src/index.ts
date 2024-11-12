@@ -1,4 +1,6 @@
 import "reflect-metadata";
+import swaggerUi from "swagger-ui-express";
+import swaggerJsdoc from "swagger-jsdoc";
 import express from "express";
 import { DataSource } from "typeorm";
 import { User } from "./entity/User";
@@ -34,6 +36,21 @@ const initializeDatabase = async () => {
 };
 
 initializeDatabase();
+
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Minha API com Swagger",
+      version: "1.0.0",
+      description: "Documentação da API usando Swagger",
+    },
+  },
+  apis: ["./src/**/*.ts"],
+};
+
+const swaggerSpec = swaggerJsdoc(options);
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 const userController = new UserController();
 const postController = new PostController();
