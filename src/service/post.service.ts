@@ -36,4 +36,12 @@ export class PostService {
     }
     return post;
   }
+
+  async deletePostById(id: number): Promise<void> {
+    const post = await postRepository().findOneBy({ id });
+    if (!post) {
+      throw new Error('Post nao encontrado');
+    }
+    await postRepository().remove(post);
+  }
 }

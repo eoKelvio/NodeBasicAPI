@@ -122,4 +122,14 @@ export class PostController {
       return res.status(500).json({ message: 'Error fetching post', error: error });
     }
   }
+
+  async deletePostById(req: Request, res: Response): Promise<Response> {
+    try {
+      await this.postService.deletePostById(Number(req.params.id));
+      return res.status(200).json({ message: 'Post deleted successfully' });
+    } catch (error) {
+      console.error('Error deleting post:', error);
+      return res.status(500).json({ message: 'Error deleting post', error: error });
+    }
+  }
 }

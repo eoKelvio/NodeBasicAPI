@@ -85,6 +85,7 @@ app.delete("/users/:id", userController.deleteUserById.bind(userController));
 app.post("/posts", postController.createPost.bind(postController));
 app.get("/posts", postController.getPosts.bind(postController));
 app.get("/posts/:id", postController.getPostById.bind(postController));
+app.delete("/posts/:id", postController.deletePostById.bind(postController));
 
 // Configura a porta para ouvir requisições.
 const PORT = process.env.PORT || 3000;
