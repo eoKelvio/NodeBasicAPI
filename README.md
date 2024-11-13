@@ -7,6 +7,8 @@
 ![Swagger](https://img.shields.io/badge/Swagger-green?logo=swagger) 
 ![MySQL](https://img.shields.io/badge/MySQL-white?logo=mysql) 
 ![Axios](https://img.shields.io/badge/Axios-purple?logo=axios)
+![Jest](https://img.shields.io/badge/Jest-red?logo=jest)
+
 
 ## Sumário
 
@@ -15,6 +17,7 @@
 - [Estrutura do Projeto](#estrutura-do-projeto)
 - [Inicialização do Banco de Dados](#inicialização-do-banco-de-dados)
 - [Configuração e Execução](#configuração-e-execução)
+- [Testes Automatizados](#testes-automatizados)
 
 
 ## Introdução
@@ -30,6 +33,7 @@ O projeto é um desafio para testes de capacidade. O objetivo é criar uma peque
 - **MySQL** 
 - **Swagger**
 - **Docker**
+- **Jest**
 
 ## Estrutura do Projeto
 
@@ -63,7 +67,7 @@ O projeto inclui um arquivo de inicialização de tabelas SQL para criar a estru
 ## Configuração e Execução
 
 1. **Pré-requisitos**: Certifique-se de ter o Docker instalado.
-2. **Dependências do Node**: Executar o comando 
+2. **Dependências do Node**: Executar o comando para instalar
 
    ```bash
    npm install
@@ -78,3 +82,13 @@ O projeto inclui um arquivo de inicialização de tabelas SQL para criar a estru
 Após iniciar os containers, basta acessar a URL `http://localhost:3000` para utilizar os endpoints da API. A aplicação inclui uma interface de documentação completa com Swagger, acessível em `http://localhost:3000/docs`, o que permite uma visualização clara e detalhada de todos os endpoints disponíveis.
 
 Além disso, há um arquivo de collections do Postman incluído no projeto para facilitar o teste e a validação das funcionalidades da API.
+
+## Testes Automatizados
+
+A aplicação possui uma suíte de testes automatizados desenvolvida com Jest para garantir a integridade e a funcionalidade dos endpoints. Os testes podem ser executados sem a necessidade de iniciar manualmente a aplicação, proporcionando um processo de verificação mais ágil e eficiente. Para rodar os testes, utilize o seguinte comando:
+
+``` bash
+npm run jest
+```
+
+Essa abordagem assegura que os endpoints sejam validados em um ambiente controlado, permitindo a identificação rápida de possíveis problemas e garantindo a estabilidade do código em desenvolvimento.
