@@ -13,9 +13,9 @@
 - [Introdução](#introdução)
 - [Requisitos](#requisitos)
 - [Estrutura do Projeto](#estrutura-do-projeto)
+- [Inicialização do Banco de Dados](#inicialização-do-banco-de-dados)
 - [Configuração e Execução](#configuração-e-execução)
-- [Exemplos de Uso](#exemplos-de-uso)
-- [Informações Adicionais](#informações-adicionais)
+
 
 ## Introdução
 
@@ -60,7 +60,7 @@ A API fornece os seguintes endpoints para o gerenciamento de usuários e posts:
 
 O projeto inclui um arquivo de inicialização de tabelas SQL para criar a estrutura necessária no banco de dados.
 
-## Executando o Projeto
+## Configuração e Execução
 
 1. **Pré-requisitos**: Certifique-se de ter o Docker instalado.
 2. **Dependências do Node**: Executar o comando 
@@ -68,13 +68,13 @@ O projeto inclui um arquivo de inicialização de tabelas SQL para criar a estru
    ```bash
    npm install
    ```
-   
+
 3. **Inicie os containers**: Execute o comando abaixo para inicializar a API e o banco de dados em containers Docker:
 
    ```bash
    docker-compose up 
    ```
 
-Após iniciar os containers, basta acessar a URL http://localhost:3000 para utilizar os endpoints da API. A aplicação inclui uma interface de documentação completa com Swagger, acessível em http://localhost:3000/docs, o que permite uma visualização clara e detalhada de todos os endpoints disponíveis.
+Após iniciar os containers, basta acessar a URL `http://localhost:3000` para utilizar os endpoints da API. A aplicação inclui uma interface de documentação completa com Swagger, acessível em `http://localhost:3000/docs`, o que permite uma visualização clara e detalhada de todos os endpoints disponíveis.
 
 Além disso, há um arquivo de collections do Postman incluído no projeto para facilitar o teste e a validação das funcionalidades da API.
