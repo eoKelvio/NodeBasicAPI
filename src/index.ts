@@ -11,7 +11,7 @@ import { PostController } from "./controller/post.controller";
 
 // Cria uma instância do Express e configura o middleware para lidar com requisições JSON.
 
-const app = express();
+export const app = express();
 app.use(express.json());
 
 
