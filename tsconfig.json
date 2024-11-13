@@ -13,8 +13,4 @@
   },
   "include": ["src/**/*", "src/db.test.ts"],
   "exclude": ["node_modules"],
-  "scripts": {
-  "test": "jest"
-}
-
 }
