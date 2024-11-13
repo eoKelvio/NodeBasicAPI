@@ -3,7 +3,7 @@ import { UserService } from "../service/user.service";
 import { userRepository } from "../repository/user.repository";
 
 // Cria o mock da função `userRepository` para retornar um objeto simulado com os métodos `findOneBy`, `create` e `save`
-jest.mock('../repository/user.repository', () => ({
+jest.mock("../repository/user.repository", () => ({
   userRepository: jest.fn(),
 }));
 
@@ -43,7 +43,9 @@ describe("UserService", () => {
 
     const result = await userService.createUser(userData);
 
-    expect(mockRepository.findOneBy).toHaveBeenCalledWith({ email: userData.email });
+    expect(mockRepository.findOneBy).toHaveBeenCalledWith({
+      email: userData.email,
+    });
     expect(mockRepository.create).toHaveBeenCalledWith(userData);
     expect(mockRepository.save).toHaveBeenCalledWith({ id: 1, ...userData });
     expect(result).toMatchObject({
@@ -64,18 +66,26 @@ describe("UserService", () => {
     // Configura o mock para que `findOneBy` retorne um usuário existente
     mockRepository.findOneBy.mockResolvedValue({ id: 1, ...userData });
 
-    await expect(userService.createUser(userData)).rejects.toThrow("Email já está em uso");
+    await expect(userService.createUser(userData)).rejects.toThrow(
+      "Email já está em uso"
+    );
 
-    expect(mockRepository.findOneBy).toHaveBeenCalledWith({ email: userData.email });
+    expect(mockRepository.findOneBy).toHaveBeenCalledWith({
+      email: userData.email,
+    });
     expect(mockRepository.create).not.toHaveBeenCalled();
     expect(mockRepository.save).not.toHaveBeenCalled();
   });
 
-  
   it("deve retornar uma lista de usuários", async () => {
     const users = [
       { id: 1, firstName: "João", lastName: "Doe", email: "joao@example.com" },
-      { id: 2, firstName: "Maria", lastName: "Santos", email: "maria@example.com" },
+      {
+        id: 2,
+        firstName: "Maria",
+        lastName: "Santos",
+        email: "maria@example.com",
+      },
     ];
 
     // Configura o mock para que `find` retorne a lista de usuários
@@ -89,7 +99,12 @@ describe("UserService", () => {
 
   it("deve retornar um usuário por ID", async () => {
     const userId = 1;
-    const user = { id: userId, firstName: "João", lastName: "Doe", email: "joao@example.com" };
+    const user = {
+      id: userId,
+      firstName: "João",
+      lastName: "Doe",
+      email: "joao@example.com",
+    };
 
     // Configura o mock para que `findOneBy` retorne o usuário correspondente ao ID
     mockRepository.findOneBy.mockResolvedValue(user);

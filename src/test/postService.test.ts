@@ -53,9 +53,14 @@ describe("PostService", () => {
 
     const result = await postService.createPost(postData);
 
-    expect(mockUserRepository.findOneBy).toHaveBeenCalledWith({ id: postData.userId });
+    expect(mockUserRepository.findOneBy).toHaveBeenCalledWith({
+      id: postData.userId,
+    });
     expect(mockPostRepository.create).toHaveBeenCalledWith(postData);
-    expect(mockPostRepository.save).toHaveBeenCalledWith({ id: 1, ...postData });
+    expect(mockPostRepository.save).toHaveBeenCalledWith({
+      id: 1,
+      ...postData,
+    });
     expect(result).toMatchObject({
       id: 1,
       userId: 1,
@@ -86,7 +91,9 @@ describe("PostService", () => {
 
     mockPostRepository.findOneBy.mockResolvedValue(null);
 
-    await expect(postService.getPostById(postId)).rejects.toThrow("Post não encontrado");
+    await expect(postService.getPostById(postId)).rejects.toThrow(
+      "Post não encontrado"
+    );
     expect(mockPostRepository.findOneBy).toHaveBeenCalledWith({ id: postId });
   });
 
@@ -113,7 +120,9 @@ describe("PostService", () => {
 
     mockPostRepository.findOneBy.mockResolvedValue(null);
 
-    await expect(postService.deletePostById(postId)).rejects.toThrow("Post nao encontrado");
+    await expect(postService.deletePostById(postId)).rejects.toThrow(
+      "Post nao encontrado"
+    );
     expect(mockPostRepository.findOneBy).toHaveBeenCalledWith({ id: postId });
   });
 });
