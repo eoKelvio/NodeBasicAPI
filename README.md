@@ -1,59 +1,80 @@
-# Descrição do Teste para a Vaga de Desenvolvedor Jr.
+# DevTest
 
-## Contextualização do Desafio
+![Node.js](https://img.shields.io/badge/Node.js-green?logo=node.js) 
+![TypeScript](https://img.shields.io/badge/TypeScript-gray?logo=typescript) 
+![Express](https://img.shields.io/badge/Express-lightgrey?logo=express) 
+![TypeORM](https://img.shields.io/badge/TypeORM-orange?logo=typeorm) 
+![Swagger](https://img.shields.io/badge/Swagger-green?logo=swagger) 
+![MySQL](https://img.shields.io/badge/MySQL-white?logo=mysql) 
+![Axios](https://img.shields.io/badge/Axios-purple?logo=axios)
 
-Este teste foi desenvolvido para avaliar suas habilidades práticas em tarefas comuns do dia a dia de um desenvolvedor júnior. Através deste desafio, você terá a oportunidade de demonstrar seu conhecimento na criação de banco de dados, definição de relacionamentos entre tabelas e entidades, além de aplicar boas práticas de desenvolvimento em um ambiente Docker. O objetivo é simular uma situação real de desenvolvimento de uma aplicação simples, onde você deverá criar as estruturas necessárias e garantir que o sistema esteja funcionando corretamente por meio de testes. A conclusão bem-sucedida desta tarefa refletirá seu domínio de conceitos importantes para a vaga.
+## Sumário
 
-## 1º Passo: Criação das Tabelas no `init.sql`
+- [Introdução](#introdução)
+- [Requisitos](#requisitos)
+- [Estrutura do Projeto](#estrutura-do-projeto)
+- [Configuração e Execução](#configuração-e-execução)
+- [Exemplos de Uso](#exemplos-de-uso)
+- [Informações Adicionais](#informações-adicionais)
 
-Dentro do arquivo `init.sql`, crie as seguintes tabelas:
+## Introdução
 
-### Tabela `user`
-- **id** – Tipo: `Int`, autoincremental, chave primária (PK).
-- **firstName** – Tipo: `Varchar(100)`, não nulo.
-- **lastName** – Tipo: `Varchar(100)`, não nulo.
-- **email** – Tipo: `Varchar(100)`, não nulo.
+O projeto é um desafio para testes de capacidade. O objetivo é criar uma pequena aplicação utilizando Node.js e Express, com suporte de TypeORM e MySQL. A aplicação inclui integrações com documentação Swagger e consumo de dados via Axios.
 
-### Tabela `post`
-- **id** – Tipo: `Int`, autoincremental, chave primária (PK).
-- **title** – Tipo: `Varchar(100)`, não nulo.
-- **description** – Tipo: `Varchar(100)`, não nulo.
-- **userId** – Tipo: `Int`, não nulo (chave estrangeira referenciando a tabela `user`).
+## Técnologias Utilizadas
 
----
+- **Node.js** 
+- **TypeScript** 
+- **Express** 
+- **TypeORM** 
+- **MySQL** 
+- **Swagger**
+- **Docker**
 
-## 2º Passo: Criação das Entidades `User` e `Post`
+## Estrutura do Projeto
 
-Dentro da pasta `src/Entity`, crie as entidades correspondentes às tabelas `User` e `Post`.
+A API é composta por camadas que seguem a arquitetura limpa, com cada camada desempenhando uma função específica, o que facilita a manutenção e a escalabilidade:
 
----
+- **DTO** (Data Transfer Object): Define os objetos de transferência de dados entre as camadas.
+- **Repository**: Camada responsável pela comunicação direta com o banco de dados.
+- **Service**: Camada intermediária que coordena a lógica de negócios, realizando a comunicação entre o `Repository` e o `Controller`.
+- **Controller**: Interface que gerencia as requisições HTTP e interage com o `Service`.
 
-## 3º Passo: Configurar endpoints `users` e `posts`
+## Funcionalidades
 
-Dentro de `src/index.ts`, configure dois endpoints `users` & `posts`
+A API fornece os seguintes endpoints para o gerenciamento de usuários e posts:
 
----
+- **/user**:
+  - `POST /user`: Criação de um novo usuário.
+  - `GET /user`: Retorna todos os usuários.
+  - `GET /user/{id}`: Retorna um usuário específico pelo `ID`.
+  - `DELETE /user/{id}`: Remove um usuário específico pelo `ID`.
+  
+- **/post**:
+  - `POST /post`: Criação de um novo post.
+  - `GET /post`: Retorna todos os posts.
+  - `GET /post/{id}`: Retorna um post específico pelo `ID`.
+  - `DELETE /post/{id}`: Remove um post específico pelo `ID`.
 
-## 4º Passo: Configuração do Dockerfile
+## Inicialização do Banco de Dados
 
-Configure o `Dockerfile` da aplicação para garantir que ela seja construída corretamente no ambiente Docker.
+O projeto inclui um arquivo de inicialização de tabelas SQL para criar a estrutura necessária no banco de dados.
 
----
+## Executando o Projeto
 
-## 5º Passo: Teste da Aplicação
+1. **Pré-requisitos**: Certifique-se de ter o Docker instalado.
+2. **Dependências do Node**: Executar o comando 
 
-Execute os seguintes comandos para testar a aplicação:
-
-1. **Subir a aplicação utilizando Docker Compose**:
    ```bash
-   docker compose up --build
-   docker exec -it <Container Name> /bin/sh
+   npm install
+   ```
    
-   ```
+3. **Inicie os containers**: Execute o comando abaixo para inicializar a API e o banco de dados em containers Docker:
 
-   Dentro do container, execute o teste:
    ```bash
-   npm test
+   docker-compose up 
    ```
 
-## 6º Passo: Crie um fork desse repositório e submita o código preenchido nele.
+Após iniciar os containers, basta acessar a URL http://localhost:3000 para utilizar os endpoints da API. A aplicação inclui uma interface de documentação completa com Swagger, acessível em http://localhost:3000/docs, o que permite uma visualização clara e detalhada de todos os endpoints disponíveis.
+
+Além disso, há um arquivo de collections do Postman incluído no projeto para facilitar o teste e a validação das funcionalidades da API.
